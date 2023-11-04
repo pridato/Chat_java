@@ -14,7 +14,14 @@
         <servlet-name>EnviarMensajeServlet</servlet-name>
         <servlet-class>com.avellaneda.Servlets.EnviarMensajeServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>procesarLogin</servlet-name>
+        <servlet-class>com.avellaneda.Servlets.procesarLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>procesarLogin</servlet-name>
+        <url-pattern>/procesarLogin</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EnviarMensajeServlet</servlet-name>
         <url-pattern>/EnviarMensajeServlet</url-pattern>

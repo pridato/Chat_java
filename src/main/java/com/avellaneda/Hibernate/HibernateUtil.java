@@ -17,7 +17,7 @@ public class HibernateUtil {
 
     }
 
-    private void transactionMessage(Mensaje mensaje) {
+    public static void transactionMessage(Mensaje mensaje) {
         Session session = getSession();
         session.beginTransaction();
 

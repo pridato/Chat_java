@@ -1,5 +1,6 @@
 package com.avellaneda.Servlets;
 
+import com.avellaneda.Hibernate.HibernateUtil;
 import com.avellaneda.Hibernate.Mensaje;
 import com.avellaneda.Hibernate.Usuario;
 
@@ -20,9 +21,7 @@ public class EnviarMensajeServlet extends HttpServlet {
         Usuario usuario = new Usuario(user);
         Mensaje mensajeObj = new Mensaje(mensaje, usuario);
 
-
-        String serverAddress = "localhost"; // Cambia esto a la dirección de tu servidor
-        int serverPort = 12345; // Cambia esto al puerto de tu servidor
+        HibernateUtil.transactionMessage(mensajeObj);
 
 
         out.println(mensajeObj);
