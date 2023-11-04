@@ -4,4 +4,19 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+    <!-- Configura el servlet de inicio de la aplicación -->
+
+    <welcome-file-list>
+        <welcome-file>chat.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>EnviarMensajeServlet</servlet-name>
+        <servlet-class>com.avellaneda.Servlets.EnviarMensajeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EnviarMensajeServlet</servlet-name>
+        <url-pattern>/EnviarMensajeServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

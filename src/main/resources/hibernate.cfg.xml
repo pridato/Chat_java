@@ -11,6 +11,9 @@
         <!-- Configura el dialecto SQL para tu base de datos -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
+        <!-- Configura la estrategia de creación de tablas -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
         <!-- Configura el escaneo de paquetes para tus entidades -->
         <mapping class="com.avellaneda.Hibernate.Mensaje"/>
         <mapping class="com.avellaneda.Hibernate.Usuario"/>

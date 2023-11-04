@@ -8,10 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Chat</title>
 
 </head>
 <body>
- <p>Chat </p>
+    <form action="EnviarMensajeServlet" method="post">
+        <input type="text" name="mensaje" placeholder="Escribe un mensaje">
+
+        <input type="text" name="user" placeholder="Aquien va dirigido">
+
+        <input type="submit" value="Enviar">
+    </form>
 </body>
 </html>

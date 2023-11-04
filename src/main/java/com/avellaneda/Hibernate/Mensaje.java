@@ -1,49 +1,44 @@
 package com.avellaneda.Hibernate;
 
+import javax.persistence.*;
+
+@Entity
 public class Mensaje {
 
-    private int id;
-    private String texto;
-    private Usuario usuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String contenido;
+    @ManyToOne
+    private Usuario remitente; // Usuario que envía el mensaje
 
     public Mensaje() {
+
     }
 
-    public Mensaje(String texto, Usuario usuario) {
-        this.texto = texto;
-        this.usuario = usuario;
+    public Mensaje(String contenido, Usuario remitente) {
+        this.contenido = contenido;
+        this.remitente = remitente;
     }
 
-    public int getId() {
-        return id;
+    public String getContenido() {
+        return contenido;
     }
 
-    public String getTexto() {
-        return texto;
+    public Usuario getRemitente() {
+        return remitente;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRemitente(Usuario remitente) {
+        this.remitente = remitente;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    @Override
+    // string
     public String toString() {
-        return "Mensaje{" +
-                "id=" + id +
-                ", texto='" + texto + '\'' +
-                ", usuario=" + usuario +
-                '}';
+        return "Mensaje: " + contenido + " de " + remitente;
     }
 }
