@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,27 +15,30 @@ import java.util.stream.Stream;
 
 public class procesarLogin extends HttpServlet {
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        
         String user = request.getParameter("user");
         String password = request.getParameter("password");
         String accion = request.getParameter("accion");
 
+        Usuario usuario = new Usuario(user, password);
         if (accion != null && accion.equals("crearCuenta")) {
-            Usuario usuario = new Usuario(user, password);
+
             HibernateUtil.transactionUser(usuario);
         }
 
         List usuarios = HibernateUtil.getUsuarios();
 
         // con stream
-        boolean encontrado = usuarios.stream().anyMatch(usuario -> ((Usuario) usuario).getNombre().equals(user) && ((Usuario) usuario).getPassword().equals(password));
-        System.out.println(encontrado);
+        boolean encontrado = usuarios.stream().anyMatch(us -> ((Usuario) us).getNombre().equals(user) && ((Usuario) us).getPassword().equals(password));
 
         try {
 
             if (encontrado) {
                 try {
-                    response.sendRedirect("chat.jsp");
+                    getServletContext().setAttribute("usuario", usuario);
+                    response.sendRedirect("chat.jsp?user=" + user);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -48,4 +52,5 @@ public class procesarLogin extends HttpServlet {
         }
 
     }
+
 }

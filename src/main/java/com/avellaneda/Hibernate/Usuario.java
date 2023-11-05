@@ -45,6 +45,6 @@ public class Usuario {
 
     // string
     public String toString() {
-        return "Usuario: " + nombre;
+        return " " + nombre;
     }
 }

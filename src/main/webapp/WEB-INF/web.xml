@@ -8,7 +8,7 @@
     <!-- Configura el servlet de inicio de la aplicación -->
 
     <welcome-file-list>
-        <welcome-file>chat.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
         <servlet-name>EnviarMensajeServlet</servlet-name>

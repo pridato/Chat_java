@@ -1,6 +1,7 @@
 package com.avellaneda.Hibernate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Mensaje {
@@ -9,17 +10,26 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String contenido;
-    @ManyToOne
+    private String remitente_bien;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
     private Usuario remitente; // Usuario que envía el mensaje
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
 
     public Mensaje() {
 
     }
 
-    public Mensaje(String contenido, Usuario remitente) {
+    public Mensaje(String contenido, Usuario remitente, String remitente_bien) {
         this.contenido = contenido;
         this.remitente = remitente;
+        this.remitente_bien = remitente_bien;
+        this.fechaCreacion = new Date();
+
     }
+
 
     public String getContenido() {
         return contenido;
@@ -39,6 +49,6 @@ public class Mensaje {
 
     // string
     public String toString() {
-        return "Mensaje: " + contenido + " de " + remitente;
+        return contenido + " de " + remitente_bien + " para " + remitente;
     }
 }
