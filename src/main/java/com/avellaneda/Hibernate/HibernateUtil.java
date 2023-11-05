@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class HibernateUtil {
     private static final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
@@ -24,6 +26,18 @@ public class HibernateUtil {
         session.save(mensaje);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public static List getUsuarios() {
+        Session session = getSession();
+        session.beginTransaction();
+
+        List usuarios = session.createQuery("from Usuario").list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return usuarios;
     }
 
     private static Session getSession() {

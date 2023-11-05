@@ -35,7 +35,13 @@ public class Usuario {
         return id;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
 
     // string
     public String toString() {

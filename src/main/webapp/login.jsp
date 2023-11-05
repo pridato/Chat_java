@@ -16,6 +16,9 @@
 <body>
 <div class="container mt-4">
   <h2 class="col mx-auto my-auto text-center mt-4">Iniciar Sesión o Crear Cuenta</h2>
+
+  <div id="mensaje" class="alert alert-danger" style="display: none;"></div>
+
   <form id="loginForm" action="procesarLogin" method="post">
     <div class="form-group">
       <label for="email">User:</label>
@@ -35,5 +38,15 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // JavaScript para mostrar mensajes de error
+  var urlParams = new URLSearchParams(window.location.search);
+  var errorMensaje = urlParams.get("errorMensaje");
+  if (errorMensaje) {
+    var mensajeDiv = document.getElementById("mensaje");
+    mensajeDiv.textContent = errorMensaje;
+    mensajeDiv.style.display = "block";
+  }
+</script>
 </body>
 </html>
