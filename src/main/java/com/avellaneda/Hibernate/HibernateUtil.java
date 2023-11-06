@@ -12,8 +12,8 @@ public class HibernateUtil {
     private static final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
 
-    public static void cleanUpMessage(){
-        try(Session session = sessionFactory.openSession()) {
+    public static void cleanUpMessage() {
+        try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
             Query<Mensaje> query = session.createQuery("FROM Mensaje m ORDER BY m.fechaCreacion DESC", Mensaje.class);
@@ -28,14 +28,16 @@ public class HibernateUtil {
 
         }
     }
+
     public static void transactionUser(Usuario usuario) {
-        Session session = getSession();
-        session.beginTransaction();
+        if (usuario.getPassword() != null) {
+            Session session = getSession();
+            session.beginTransaction();
 
-        session.save(usuario);
-        session.getTransaction().commit();
-        session.close();
-
+            session.save(usuario);
+            session.getTransaction().commit();
+            session.close();
+        }
     }
 
     public static void transactionMessage(Mensaje mensaje) {
