@@ -30,6 +30,9 @@ public class Mensaje {
 
     }
 
+    public Mensaje(String mensaje, Usuario usuario) {
+    }
+
 
     public String getContenido() {
         return contenido;
@@ -45,6 +48,10 @@ public class Mensaje {
 
     public void setRemitente(Usuario remitente) {
         this.remitente = remitente;
+    }
+
+    public String getRemitente_bien() {
+        return remitente_bien;
     }
 
     // string

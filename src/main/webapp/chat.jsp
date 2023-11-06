@@ -64,17 +64,16 @@
     var urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get('user');
 
-    console.log(user)
-
     const messageList = document.getElementById("message-list");
     const chatForm = document.getElementById("chat-form");
     const mensajeInput = document.getElementById("mensaje");
     const destinatarioInput = document.getElementById("destinatario");
 
-    const socket = new WebSocket("ws://localhost:8080/chatOnline/chat");
+    const socket = new WebSocket(`ws://localhost:8080/chatOnline/chat?user=${user}`);
 
     socket.addEventListener("open", (event) => {
-        console.log("Conexión WebSocket abierta.");
+        console.log(event)
+        socket.send(user)
     });
 
     socket.addEventListener("message", (event) => {

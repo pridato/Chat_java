@@ -18,11 +18,9 @@ public class HibernateUtil {
 
             Query<Mensaje> query = session.createQuery("FROM Mensaje m ORDER BY m.fechaCreacion DESC", Mensaje.class);
             List<Mensaje> mensajes = query.getResultList();
-            System.out.println(mensajes.size());
 
             for (int i = 10; i < mensajes.size(); i++) {
                 Mensaje mensajeToDelete = mensajes.get(i);
-                System.out.println(mensajeToDelete);
                 session.delete(mensajeToDelete);
             }
 
